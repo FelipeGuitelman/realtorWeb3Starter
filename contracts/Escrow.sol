@@ -30,10 +30,12 @@ contract Escrow {
         _;
     }
 
+    //mappings *isListed**purchuasePrice**escrowAmount**buyer**inspectionPassed*
     mapping(uint256 => bool) public isListed;
     mapping(uint256 => uint256) public purchasePrice;
     mapping(uint256 => uint256) public escrowAmount;
     mapping(uint256 => address) public buyer;
+    mapping(address => uint256) public depositByBuyer;
     mapping(uint256 => bool) public inspectionPassed;
     mapping(uint256 => mapping(address => bool)) public approval;
 
@@ -66,7 +68,9 @@ contract Escrow {
 
     // Put Under Contract (only buyer - payable escrow)
     function depositEarnest(uint256 _nftID) public payable onlyBuyer(_nftID) {
-        require(msg.value >= escrowAmount[_nftID]);
+        uint256 _depositAmount = msg.value;
+        require(_depositAmount >= escrowAmount[_nftID], "Insuficient Amount");
+        depositByBuyer[msg.sender] += _depositAmount;
     }
 
     // Update Inspection Status (only inspector)
@@ -74,6 +78,7 @@ contract Escrow {
         public
         onlyInspector
     {
+        require(isListed[_nftID] == true, "Not existing NFT");
         inspectionPassed[_nftID] = _passed;
     }
 
@@ -83,7 +88,7 @@ contract Escrow {
     }
 
     // Finalize Sale
-    // -> Require inspection status (add more items here, like appraisal)
+    // -> Require inspection status
     // -> Require sale to be authorized
     // -> Require funds to be correct amount
     // -> Transfer NFT to buyer
@@ -115,8 +120,10 @@ contract Escrow {
         }
     }
 
+    //implement a special receive function in order to receive funds and increase the balance
     receive() external payable {}
 
+    //function getBalance to check the current balance
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }

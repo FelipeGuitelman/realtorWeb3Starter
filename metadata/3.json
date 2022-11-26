@@ -1,13 +1,13 @@
 {
-    "name": "WA Nature Home",
-    "address": "183 Woodland Drive, Camano Island, WA 98282",
-    "description": "Comfy island home on Camano Island",
-    "image": "https://ipfs.io/ipfs/QmQUozrHLAusXDxrvsESJ3PYB3rUeUuBAvVWw6nop2uu7c/3.png",
+    "name": "Nature Home Cordoba",
+    "address": "Muntains of Cordoba, Cordoba, Argentina",
+    "description": "Comfy home on Muntains of Cordoba",
+    "image": "https://ipfs.io/ipfs/QmbyhhRRf52yCoqh5acDTugbRrbEBZ7aU2hkjr6hf1enTj/3.png",
     "id": "3",
     "attributes": [
         {
             "trait_type": "Purchase Price",
-            "value": 10
+            "value": 4250
         },
         {
             "trait_type": "Type of Residence",
@@ -15,7 +15,7 @@
         },
         {
             "trait_type": "Bed Rooms",
-            "value": 3
+            "value": 5
         },
         {
             "trait_type": "Bathrooms",
@@ -23,11 +23,11 @@
         },
         {
             "trait_type": "Square Feet",
-            "value": 2202
+            "value": 502
         },
         {
             "trait_type": "Year Built",
-            "value": 2020
+            "value": 2018
         }
     ]
 }
